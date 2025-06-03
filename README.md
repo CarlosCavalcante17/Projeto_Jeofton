@@ -4,14 +4,20 @@ Olá, tudo bem? Esse projeto consiste em um aplicativo simples em Python com int
 Funcionalidades do aplicativo
 
 ✅ Cadastro de transações (entrada ou saída)
+
 ✅ Informações: valor, categoria, descrição e data
+
 ✅ Interface gráfica simples com Tkinter
+
 ✅ Armazenamento local com SQLite
+
 ✅ Listagem das transações mais recentes
 
 
 🧑‍💻 Autor
+
 Feito com 💙 por Carlos Eduardo Menezes Cavalcante
+
 e Nelson Francisco Suassuna Neto
 
 
