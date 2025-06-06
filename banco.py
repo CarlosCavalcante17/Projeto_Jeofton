@@ -43,30 +43,33 @@ def criar_tabela():
     cursor.execute(""" 
         CREATE TABLE IF NOT EXISTS usuarios (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nome TEXT
-            email TEXT UNIQUE,
-            senha TEXT
+            nome TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            senha TEXT  UNIQUE NOT NULL
         )
     """)
     conn.commit()
-    conn.close()
 
 def registrar_usuario(nome, email, senha):
+    conn = None
     try:
        conn = conectar()
        cursor = conn.cursor()
        cursor.execute("INSERT INTO usuarios(nome, email, senha) VALUES (?, ?, ?)",
                    (nome, email, senha))
-       conn.commit()
+       conn.commit()    
        conn.close()
        return True
-    except:
+    except Exception as e:
+       print("Erro ao registar usuário:", e)
        return False
+    finally:
+        if conn:
+            conn.close()
     
 def autenticar_usuario(email, senha):
         conn = conectar()
         cursor = conn.cursor()
         cursor.execute("SELECT id, nome FROM usuarios WHERE email = ? AND senha = ?", (email, senha))
-        resultado = cursor.fetchall()
-        conn.close()
-        return resultado #se for sucesso vai retornar (id, nome); se falhar ele vai retornar como none
+        return cursor.fetchone()
+        
