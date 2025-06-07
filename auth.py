@@ -19,7 +19,7 @@ def fazer_login():
       resultado.configure(text="Login feito com sucesso!", text_color="green")
       
    else:
-      resultado.configure(text="Usuário ou senha incorretos.", text_color="red")
+      resultado.configure(text="E-mail ou senha incorretos.", text_color="red")
 
 # Criação da janela principal
 app = ctk.CTk()
@@ -28,10 +28,10 @@ app.geometry("400x400")
 
 # Criação dos campos
 # Label
-label_usuario = ctk.CTkLabel(app, text="Usuário:")
+label_usuario = ctk.CTkLabel(app, text="E-mail:")
 label_usuario.pack(pady=10)
 # Entry
-campo_usuario = ctk.CTkEntry(app, placeholder_text="Digite seu usuário")
+campo_usuario = ctk.CTkEntry(app, placeholder_text="Digite seu e-mail")
 campo_usuario.pack(pady=10)
 # Label
 label_senha = ctk.CTkLabel(app, text="Senha:")
