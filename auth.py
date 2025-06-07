@@ -1,39 +1,53 @@
 import tkinter as tk
+import customtkinter as ctk
 from tkinter import messagebox
+from banco import autenticar_usuario
 from banco import criar_tabela
-from banco import registrar_usuario, autenticar_usuario
 from cadastro import abrir_cadastro
 
 criar_tabela()
 
-janela = tk.Tk()
-janela.title("Login de usuário")
+# configuração da aparencia
+ctk.set_appearance_mode("Dark")
 
-email_log = tk.StringVar()
-senha_log = tk.StringVar()
-nome_cad = tk.StringVar()
-email_cad = tk.StringVar()
-senha_cad = tk.StringVar()
-
+# Verificar se o usuario e senha estão corretos
 def fazer_login():
-    resultado = autenticar_usuario(email_log.get(), senha_log.get())
-    if resultado:
-        messagebox.showinfo("Login", f"Bem vindo(a), {resultado[1]}")
-        janela.destroy()
-    else:
-        messagebox.showerror("Erro", "E-mail ou senha incorretos.")
+   usuario = campo_usuario.get()
+   senha = campo_senha.get()
+   resultado_login = autenticar_usuario(usuario, senha)
+   if resultado_login:
+      resultado.configure(text="Login feito com sucesso!", text_color="green")
+      
+   else:
+      resultado.configure(text="Usuário ou senha incorretos.", text_color="red")
 
+# Criação da janela principal
+app = ctk.CTk()
+app.title("Login")
+app.geometry("400x400")
 
-# Área da interface do login 
+# Criação dos campos
+# Label
+label_usuario = ctk.CTkLabel(app, text="Usuário:")
+label_usuario.pack(pady=10)
+# Entry
+campo_usuario = ctk.CTkEntry(app, placeholder_text="Digite seu usuário")
+campo_usuario.pack(pady=10)
+# Label
+label_senha = ctk.CTkLabel(app, text="Senha:")
+label_senha.pack(pady=10)
+# Entry
+campo_senha = ctk.CTkEntry(app, placeholder_text="Digite sua senha", show="*")
+campo_senha.pack(pady=10)
+# Botão
+botao_Login = ctk.CTkButton(app, text="Login", command=fazer_login)
+botao_Login.pack(pady=10)
+# Botão
+botao_registrar = ctk.CTkButton(app, text="Registrar", command=lambda: abrir_cadastro(app))
+botao_registrar.pack(pady=5)
+# Campo feedback de login
+resultado = ctk.CTkLabel(app, text="")
+resultado.pack(pady=10)
 
-tk.Label(janela, text="E-mail:").grid(row=0, column=0)
-tk.Entry(janela, textvariable=email_log).grid(row=0, column=1)
-
-tk.Label(janela, text="Senha:").grid(row=1, column=0)
-tk.Entry(janela, textvariable=senha_log, show="*").grid(row=1, column=1)
-
-tk.Button(janela, text="Criar conta", command=lambda: abrir_cadastro(janela)).grid(row=2,column=1)
-
-tk.Button(janela, text="Entrar", command=fazer_login).grid(row=2, column=0)
-
-janela.mainloop()
+# Iniciar o loop da aplicação
+app.mainloop()
