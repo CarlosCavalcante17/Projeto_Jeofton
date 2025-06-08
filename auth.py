@@ -1,9 +1,8 @@
-import tkinter as tk
 import customtkinter as ctk
-from tkinter import messagebox
 from banco import autenticar_usuario
 from banco import criar_tabela
 from cadastro import abrir_cadastro
+import interface
 
 criar_tabela()
 
@@ -17,6 +16,10 @@ def fazer_login():
    resultado_login = autenticar_usuario(usuario, senha)
    if resultado_login:
       resultado.configure(text="Login feito com sucesso!", text_color="green")
+      app.after(500, app.destroy)
+      usuario_id, nome = resultado_login
+      interface.abrir_janela_principal(usuario_id, nome)
+
       
    else:
       resultado.configure(text="E-mail ou senha incorretos.", text_color="red")
@@ -50,4 +53,5 @@ resultado = ctk.CTkLabel(app, text="")
 resultado.pack(pady=10)
 
 # Iniciar o loop da aplicação
-app.mainloop()
+if __name__ == "__main__":
+    app.mainloop()
