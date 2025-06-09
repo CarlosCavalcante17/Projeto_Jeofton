@@ -30,6 +30,7 @@ app.title("Login")
 app.geometry("400x400")
 
 # Criação dos campos
+ctk.CTkLabel(app, text=f"Sistema de Controle Financeiro Pessoal", font=("Arial", 16, "bold")).pack(pady=20)
 # Label
 label_usuario = ctk.CTkLabel(app, text="E-mail:")
 label_usuario.pack(pady=10)
@@ -53,5 +54,4 @@ resultado = ctk.CTkLabel(app, text="")
 resultado.pack(pady=10)
 
 # Iniciar o loop da aplicação
-if __name__ == "__main__":
-    app.mainloop()
+app.mainloop()

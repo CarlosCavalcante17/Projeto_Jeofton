@@ -6,7 +6,7 @@ from add_transacao import adicionar_transacao
 def abrir_janela_principal(usuario_id, nome):
     app = ctk.CTk()
     app.title("Área Principal")
-    app.geometry("400x400")
+    app.geometry("400x400")    
 
     
     ctk.CTkLabel(app, text=f"Bem-vindo(a), {nome}", font=("Arial", 16, "bold")).pack(pady=20)
