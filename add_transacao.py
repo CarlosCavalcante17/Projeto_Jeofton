@@ -6,7 +6,7 @@ from tkinter import messagebox
 def adicionar_transacao(usuario_id):
     transacao = ctk.CTkToplevel()
     transacao.title("Nova Transação")
-    transacao.geometry("350x400")
+    transacao.geometry("400x400")
 
     tipo = ctk.StringVar(master=transacao, value="Entrada")
     valor = ctk.StringVar(master=transacao)
