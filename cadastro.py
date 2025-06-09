@@ -1,23 +1,31 @@
+import customtkinter as ctk
 import tkinter as tk
 from tkinter import messagebox
 from banco import registrar_usuario
 
+ctk.set_appearance_mode("Dark")
+
+# Função para abrir a janela de cadastro
 def abrir_cadastro(janela_pai):
- cadastro = tk.Toplevel(janela_pai)
+ cadastro = ctk.CTkToplevel(janela_pai)
  cadastro.title("Criar Conta")
+ cadastro.geometry("400x400")
 
  nome_reg = tk.StringVar()
  email_reg = tk.StringVar()
  senha_reg = tk.StringVar()
 
- tk.Label(cadastro, text="Nome completo:").grid(row=0, column=0)
- tk.Entry(cadastro, textvariable=nome_reg).grid(row=0, column=1)
+ ctk.CTkLabel(cadastro, text='Área de Cadastro', font=("Arial", 16, "bold")).pack(pady=10)
+ ctk.CTkLabel(cadastro, text="Preencha os campos abaixo para criar uma conta").pack(pady=5)
 
- tk.Label(cadastro, text="E-mail:").grid(row=1, column=0)
- tk.Entry(cadastro, textvariable=email_reg).grid(row=1, column=1)
+ ctk.CTkLabel(cadastro, text="Nome completo:").pack(pady=5)
+ ctk.CTkEntry(cadastro, textvariable=nome_reg).pack(pady=5)
 
- tk.Label(cadastro, text="Senha:").grid(row=2, column=0)
- tk.Entry(cadastro, textvariable=senha_reg, show="*").grid(row=2, column=1)
+ ctk.CTkLabel(cadastro, text="E-mail:").pack(pady=5)
+ ctk.CTkEntry(cadastro, textvariable=email_reg).pack(pady=5)
+
+ ctk.CTkLabel(cadastro, text="Senha:").pack(pady=5)
+ ctk.CTkEntry(cadastro, textvariable=senha_reg, show="*").pack(pady=5)
 
  def registrar():
     nome = nome_reg.get()
@@ -37,5 +45,5 @@ def abrir_cadastro(janela_pai):
     else:
         messagebox.showerror("Erro", "Erro ao criar conta.")    
 
- tk.Button(cadastro, text="registrar", command=registrar).grid(row=3, column=0, columnspan=2)
+ ctk.CTkButton(cadastro, text="Registrar", command=registrar).pack(pady=10)
     
